@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quadro1.css">
+    <title>Quadro1</title>
+  </head>
+  <script>
+    const queryString = window.location.search;
+    const currentUrl = window.location.href;
+    const urlParams = new URLSearchParams(queryString);
+    const index = urlParams.get('index');
+    
+    fetch("../../ficheiroqualquer.json")
+      .then(res => res.json())
+      .then(data => {
+        const dataIndex = data[index];
+        console.log(dataIndex);
+        document.getElementById("titulo").textContent = dataIndex.titulo;
+        document.getElementById("tecnica").textContent = dataIndex.tecnica;
+        document.getElementById("dimensoes").textContent = dataIndex.dimensoes;
+        document.getElementById("data").textContent = dataIndex.data;
+        document.getElementById("autor").textContent = dataIndex.autor;
+        document.getElementById("imgTag").src = '../' + dataIndex.imgLink;
+      });
+  </script>
+  
+  <body>
+    <div class="hero"> 
+      <nav>
+        <img src="/images/C WITHOUT BG.png" alt="Maria Clara">
+        <ul>
+          <li><a href="/index.html">HOME</a></li>
+          <li><a href="/galeria.html">GALERIA</a></li>
+          <li><a href="/aboutme.html">SOBRE MIM</a></li>
+          <li><a href="/contact.html">CONTACT</a></li>
+        </ul>
+      </nav>
+      <div class="img-about">
+        <img id="imgTag" alt="quadro">
+      </div>
+      <div class="quadro">
+        <p >
+          <span>Titulo<br></span>
+          <div id="titulo">
+          </div>
+        </p>
+        <p>
+          <span><br>Tecnica<br></span>
+          <div id="tecnica">
+          </div>
+        </p>
+        <p >
+          <span><br>Dimensões<br></span>
+          <div id="dimensoes">
+            </div>
+        </p>
+        <p>
+          <span><br>DATA<br></span>
+          <div id="data"></div>
+        </p>
+        <p >
+          <span><br>Autor<br></span>
+          <div id="autor"></div>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
